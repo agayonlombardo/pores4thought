@@ -164,7 +164,12 @@ for epoch in range(opt.nepochs):
         D_G_z1 = output.mean().item()
         errD = errD_real + errD_fake
         optimizerD.step()
-
+        
+        
+        ############################
+        # (2) Update G network: maximize log(D(G(z)))
+        ###########################
+        
         netG.zero_grad()
         label.data.fill_(real_label)
         noise = torch.randn(b_size, nz, 1, 1, device=device)
