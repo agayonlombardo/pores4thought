@@ -103,14 +103,7 @@ print(netD)
 # Binary Cross Entropy loss function.
 criterion = nn.BCELoss()
 
-# Create variables
-#input, noise, fixed_noise = None, None, None
-#input = torch.FloatTensor(opt.bsize, nc, opt.imsize, opt.imsize)
 fixed_noise = torch.randn(64, nz, 1, 1, device=device)
-#label = torch.FloatTensor(opt.bsize)
-
-#input = Variable(input)
-#label = Variable(label)
 
 real_label = 0.9
 fake_label = 0
@@ -159,6 +152,11 @@ for epoch in range(opt.nepochs):
         errD_real = criterion(output, label)
         errD_real.backward()
         D_x = output.mean().item()
+        
+        
+        ############################
+        # (2) Update G network: maximize log(D(G(z)))
+        ###########################
         
         noise = torch.randn(b_size, nz, 1, 1, device=device)
         fake_data = netG(noise)
