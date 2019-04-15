@@ -54,7 +54,6 @@ nc = int(opt.nc)
 
 # Use GPU is available else use CPU.
 device = torch.device("cuda:0" if(torch.cuda.is_available() and ngpu > 0) else "cpu")
-#device = torch.device("cpu")
 print(device, " will be used.\n")
 
 # Get the data.
@@ -212,10 +211,10 @@ for epoch in range(opt.nepochs):
             save_image(output_img.data[:25], 'images_binary/%d.png' % batches_done, nrow=5, normalize=True)
             print(output_img.shape)        
         
-            #torch.save(netG.state_dict(), 'threephase_model/netG_epoch_{}.pth'.format(batches_done))
-            #torch.save(netD.state_dict(), 'threephase_model/netD_epoch_{}.pth'.format(batches_done))
-            #torch.save(optimizerG.state_dict(), 'threephase_model/optimG_epoch_{}.pth'.format(batches_done))
-            #torch.save(optimizerD.state_dict(), 'threephase_model/optimD_epoch_{}.pth'.format(batches_done))
+            torch.save(netG.state_dict(), 'threephase_model/netG_epoch_{}.pth'.format(batches_done))
+            torch.save(netD.state_dict(), 'threephase_model/netD_epoch_{}.pth'.format(batches_done))
+            torch.save(optimizerG.state_dict(), 'threephase_model/optimG_epoch_{}.pth'.format(batches_done))
+            torch.save(optimizerD.state_dict(), 'threephase_model/optimD_epoch_{}.pth'.format(batches_done))
 
 # Save the final trained model
 torch.save(netG.state_dict(), 'threephase_model/netG_final.pth'.format(epoch))
