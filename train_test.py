@@ -53,7 +53,6 @@ ndf = int(opt.ndf)
 nc = int(opt.nc)
 
 # Use GPU is available else use CPU.
-#device = torch.device("cuda:0" if(torch.cuda.is_available() and ngpu > 0) else "cpu")
 device = torch.device("cpu")
 print(device, " will be used.\n")
 
