@@ -103,6 +103,11 @@ print(netD)
 # Binary Cross Entropy loss function.
 criterion = nn.BCELoss()
 
+if(device.type == 'cuda'):
+    netD.cuda()
+    netG.cuda()
+    criterion.cuda()
+
 fixed_noise = torch.randn(64, nz, 1, 1, device=device)
 
 real_label = 0.9
