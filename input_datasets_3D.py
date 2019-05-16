@@ -76,11 +76,11 @@ for i in range(0, image.shape[0], dL):
                                 img_mat[0, o, n, m] = 1.0
                             elif subset[o, n, m] == material2: # layer 2 will be white - material2
                                 img_mat[2, o, n, m] = 1.0
-                            #for 2 phase images while is layer 1
-                        #elif subset[n,m] == material2: # layer 2 will be white - material2
-                            #img_mat[1, n, m] = 1.0
-                        else: # layer 1 will be gray - material1
-                            img_mat[1, o, n, m] = 1.0
+                                #for 2 phase images while is layer 1
+                            #elif subset[o, n,m] == material2: # layer 2 will be white - material2
+                                #img_mat[1, o, n, m] = 1.0
+                            else: # layer 1 will be gray - material1
+                                img_mat[1, o, n, m] = 1.0
                 f = h5py.File(str(opt.output_dir)+'/'+str(opt.name)+'_'+str(count)+'.hdf5', 'w')
                 f.create_dataset('data', data=img_mat, dtype='i8', compression='gzip')
                 f.close()
