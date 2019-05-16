@@ -4,21 +4,6 @@ Created on Tue Apr  2 19:39:53 2019
 
 @author: ag4915
 """
-
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar 20 16:40:16 2019
-
-@author: ag4915
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 21 15:26:43 2019
-
-@author: ag4915
-"""
-
 import tifffile
 import torch
 import numpy as np
