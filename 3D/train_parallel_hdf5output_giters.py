@@ -137,7 +137,7 @@ if(device.type == 'cuda'):
 
 fixed_noise = torch.randn(64, nz, 1, 1, 1, device=device)
 
-real_label = 0.9
+real_label = 0.9 # lable smoothing epsilon = 0.1
 fake_label = 0
 
 #two phase data: material0 = black, material1 = white
@@ -180,39 +180,42 @@ for epoch in range(opt.nepochs):
         label = torch.full((b_size,), real_label, device=device)
         
         output = netD(real_data).view(-1)
+        #output from D will be of size (b_size, 1, 1, 1, 1), with view(-1) we
+        #reshape the output to have size (b_size)
         #print(output.shape)
-        errD_real = criterion(output, label)
+        errD_real = criterion(output, label) # log(D(x))
         errD_real.backward()
         D_x = output.mean().item()
         
         
-        ############################
-        # (2) Update G network: maximize log(D(G(z)))
-        ###########################
-        
         noise = torch.randn(b_size, nz, 1, 1, 1, device=device)
         fake_data = netG(noise)
         label.data.fill_(fake_label)
-        output = netD(fake_data.detach()).view(-1)
-        errD_fake = criterion(output, label)
+        output = netD(fake_data.detach()).view(-1) # detach() no need for gradients
+        #print(output.shape)
+        errD_fake = criterion(output, label) # log(1 - D(G(z)))
         errD_fake.backward()
         D_G_z1 = output.mean().item()
         errD = errD_real + errD_fake
         optimizerD.step()
+        
+        ############################
+        # (2) Update G network: minimize log(D(G(z)))
+        ###########################
 
-        g_iter = 1
-        while g_iter != 0:
+        gen_it = 1
+        while gen_it != 0:
             netG.zero_grad()
             label.data.fill_(real_label)
             noise = torch.randn(b_size, nz, 1, 1, 1, device=device)
             fake_data = netG(noise)
             #print(fake_data.shape)
             output = netD(fake_data).view(-1)
-            errG = criterion(output,label)
+            errG = criterion(output,label) # log(D(G(z)))
             errG.backward()
             D_G_z2 = output.data.mean().item()
             optimizerG.step()
-            g_iter -= 1
+            gen_it -= 1
         
         iters += 1
         
