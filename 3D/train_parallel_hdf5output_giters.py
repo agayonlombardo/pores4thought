@@ -135,14 +135,8 @@ if(device.type == 'cuda'):
     netG.cuda()
     criterion.cuda()
 
-fixed_noise = torch.randn(64, nz, 1, 1, 1, device=device)
-
 real_label = 0.9 # lable smoothing epsilon = 0.1
 fake_label = 0
-
-#two phase data: material0 = black, material1 = white
-material0 = 0 # corresponding to layer 0
-material1 = 255 # corresponding to layer 1
 
 # Optimizer for the discriminator.
 optimizerD = optim.Adam(netD.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
@@ -200,7 +194,7 @@ for epoch in range(opt.nepochs):
         optimizerD.step()
         
         ############################
-        # (2) Update G network: minimize log(D(G(z)))
+        # (2) Update G network: maximise log(D(G(z)))
         ###########################
 
         gen_it = 1
