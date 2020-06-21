@@ -11,7 +11,8 @@ These instructions will get you a copy of the project up and running on your loc
 * We recommend the use of anconda
 * For the pytorch version you will need to have installed ```h5py``` and ```tifffile```
 ```
-Give examples
+pip install h5py
+pip install tifffile
 ```
 
 ### Installing
