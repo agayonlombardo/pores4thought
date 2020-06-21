@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+* We recommend the use of anconda
+* For the pytorch version you will need to have installed h5py and tifffile
 ```
 Give examples
 ```
@@ -72,7 +72,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Andrea Gayon-Lombardo** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Lukas Mosser**
+* **Prof Nigel Brandon**
+* **Samuel Cooper**
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
