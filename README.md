@@ -20,13 +20,18 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * We recommend the use of anconda
+* All codes are written in pytorch
+```
+pip install torch
+```
+
 * For the pytorch version you will need to have installed ```h5py``` and ```tifffile```
 ```
 pip install h5py
 pip install tifffile
 ```
 
-### Run Pre-trained Generator
+## Pre-trained Generator
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -44,19 +49,21 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Train new model
 
 Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+### Data pre-treatment 
 
-Explain what these tests test and why
+This step is required to create a training set cosisting of sub-volumes from the original tomographic data.
+
+The following libraries need to be in the same folder: ```dataset.py```
 
 ```
 Give an example
 ```
 
-### And coding style tests
+### Training step
 
 Explain what these tests test and why
 
