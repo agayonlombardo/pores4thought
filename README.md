@@ -8,7 +8,10 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 * **Lukas Mosser**
 * **Prof Nigel Brandon**
 * **Samuel Cooper**
+
+
 *Department of Earth Science and Engineering - Imperial College London*
+
 *Dyson School of Design - Imperial College London*
 
 ## Getting Started
