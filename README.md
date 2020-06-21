@@ -10,6 +10,7 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 * **Samuel Cooper**
 
 *Department of Earth Science and Engineering - Imperial College London*
+
 *Dyson School of Design - Imperial College London*
 
 ## Getting Started
@@ -25,7 +26,7 @@ pip install h5py
 pip install tifffile
 ```
 
-### Installing
+### Run Pre-trained Generator
 
 A step by step series of examples that tell you how to get a development env running
 
