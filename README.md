@@ -2,19 +2,36 @@
 
 Repository for genration of 3D multi-phase electrode microstructure with periodic boundaries
 
+## Authors
+
+* **Andrea Gayon-Lombardo** #- *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Lukas Mosser**
+* **Prof Nigel Brandon**
+* **Samuel Cooper**
+
+*Department of Earth Science and Engineering - Imperial College London*
+
+*Dyson School of Design - Imperial College London*
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+* We recommend the use of anconda
+* All codes are written in pytorch
 ```
-Give examples
+pip install torch
 ```
 
-### Installing
+* For the pytorch version you will need to have installed ```h5py``` and ```tifffile```
+```
+pip install h5py
+pip install tifffile
+```
+
+## Pre-trained Generator
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -32,19 +49,21 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Train new model
 
 Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+### Data pre-treatment 
 
-Explain what these tests test and why
+This step is required to create a training set cosisting of sub-volumes from the original tomographic data.
+
+The following libraries need to be in the same folder: ```dataset.py```
 
 ```
 Give an example
 ```
 
-### And coding style tests
+### Training step
 
 Explain what these tests test and why
 
@@ -69,12 +88,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
