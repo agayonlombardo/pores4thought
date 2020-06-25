@@ -17,9 +17,8 @@ import torchvision.utils as vutils
 from torch.autograd import Variable
 import os
 import numpy as np
+import tifffile
 from torchvision.utils import save_image
-from dataset_test import HDF5Dataset
-from hdf5_io import save_hdf5
 from dcgan_test import Generator, weights_init
 
 params = {
@@ -43,35 +42,39 @@ print(device, " will be used.\n")
 
 os.makedirs('threephase_experiment', exist_ok=True)
 
-checkpoint_netG = 'threephase_model/netG_epoch_6250.pth'
+checkpoint_netG = 'mod_out/netG_epoch_4.pth'
 
 # Create the generator.
 netG = Generator(params['nz'], params['nc'], params['ngf'], params['ngpu']).to(device)
 netG.apply(weights_init)
 netG.load_state_dict(torch.load(checkpoint_netG))
-print(netG)
+#print(netG)
 
 fixed_noise = torch.FloatTensor(1, params['nz'], params['imsize'], params['imsize']).normal_(0, 1)
 fixed_noise = Variable(fixed_noise)
 
-noise = torch.FloatTensor(1, params['nz'], 15, 15).normal_(0, 1)
+noise = torch.FloatTensor(1, params['nz'], 1, 1).normal_(0, 1)
 noise = Variable(noise)
 
 fake = netG(noise)
 print(fake.shape)
 
-W = fake.shape[2]
-H = fake.shape[3]
+img = fake.cpu()
+img = img.detach().numpy()
 
-output_data = fake.argmax(dim=1)
-output_img = torch.zeros([1, 1, W, H])
-for n in range(0, W):
-    for l in range(0, H):
-        if output_data[0, n, l] == 0:
-            output_img[0, 0, n, l] = 0.0
-        elif output_data[0, n, l] == 1:
-            output_img[0, 0, n, l] = 127.0 # 127.0 for three phase data, 255.0 for two phase
-        elif output_data[0, n, l] == 2:
-            output_img[0, 0, n, l] = 255.0
-save_image(output_img.data[0,0,:,:], 'threephase_experiment/test288_288.png', nrow=1, normalize=True)
-print(output_img.shape)
+
+W = img.shape[2]
+H = img.shape[3]
+
+phase2 = np.zeros([W, H])
+phase3 = np.zeros([W, H])
+p1 = np.array(img[0][0])
+p2 = np.array(img[0][1])
+p3 = np.array(img[0][2])
+phase2[(p2 > p1) & (p2 > p3)] = 128  # spheres, grey
+phase3[(p3 > p2) & (p3 > p1)] = 255  # binder, white
+output_img = np.int_(phase2+phase3)
+#print(output_img.shape)
+
+output = output_img.astype(np.uint8)
+tifffile.imsave('threephase_experiment/test_64_64.tif', output)
