@@ -4,7 +4,7 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 
 ## Authors
 
-* **Andrea Gayon-Lombardo** #- *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Andrea Gayon-Lombardo** 
 * **Lukas Mosser**
 * **Prof Nigel Brandon**
 * **Samuel Cooper**
@@ -15,7 +15,7 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will allow you to generate 2D slices of a SOFC anode, and 3D reconstructions of two types of electrode microstructures: a Lithium-ion cathode and a SOFC anode.
 
 ### Prerequisites
 
@@ -55,16 +55,23 @@ Explain how to run the automated tests for this system
 
 ### Data pre-treatment 
 
-This step is required to create a training set cosisting of sub-volumes from the original tomographic data.
+* This step is required to create the one-hot encoded training set cosisting of sub-volumes from the original tomographic data.
 
-The following libraries need to be in the same folder: ```dataset.py```
+* The original tomographic data must be in the same folder as the ```input_datasets_3D``` script
+
+* The tomographic data of SOFC anode can be found in (https://doi.org/10.1016/j.jpowsour.2018.03.025)
+
+* The tomographic data of Li-ion cathode can be found in (https://iopscience.iop.org/article/10.1149/2.0731814jes)
+
+* To generate the training set run:
 
 ```
-Give an example
+python input_datasets_3D.py
 ```
 
 ### Training step
 
+The following libraries need to be in the same folder: ```dataset.py```
 Explain what these tests test and why
 
 ```
