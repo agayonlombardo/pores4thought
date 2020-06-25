@@ -33,6 +33,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dataroot', default='', help='input dataset file')
 parser.add_argument('--out_dir_hdf5', default='', help= 'output file for generated images')
 parser.add_argument('--out_dir_model', default='', help= 'output file for model')
+parser.add_argument('--workers', type=int, default=0, help='number of workers')
 parser.add_argument('--cuda', action='store_true', help='enables cuda')
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 parser.add_argument('--bsize', default=64, help='batch size during training')
@@ -56,6 +57,7 @@ nz = int(opt.nz)
 ngf = int(opt.ngf)
 ndf = int(opt.ndf)
 nc = int(opt.nc)
+workers = int(opt.workers)
 
 # Use GPU is available else use CPU.
 device = torch.device("cuda:0" if(torch.cuda.is_available() and ngpu > 0) else "cpu")
@@ -69,13 +71,13 @@ dataset = HDF5Dataset(opt.dataroot,
 
 dataloader = torch.utils.data.DataLoader(dataset,
         batch_size=opt.bsize,
-        shuffle=True)
+        shuffle=True, num_workers=workers)
 
 sample_batch = next(iter(dataloader))
 #print(sample_batch.shape)
 
-opt.out_dir_hdf5 = 'images_2D'
-opt.out_dir_model = 'threephase_model'
+opt.out_dir_hdf5 = 'img_out'
+opt.out_dir_model = 'mod_out'
 
 os.makedirs(str(opt.out_dir_hdf5), exist_ok=True)
 os.makedirs(str(opt.out_dir_model), exist_ok=True)
@@ -181,11 +183,6 @@ for epoch in range(opt.nepochs):
         errD_real.backward()
         D_x = output.mean().item()
         
-        
-        ############################
-        # (2) Update G network: maximize log(D(G(z)))
-        ###########################
-        
         noise = torch.randn(b_size, nz, 1, 1, device=device)
         fake_data = netG(noise)
         label.data.fill_(fake_label)
@@ -195,7 +192,10 @@ for epoch in range(opt.nepochs):
         D_G_z1 = output.mean().item()
         errD = errD_real + errD_fake
         optimizerD.step()
-
+        
+        ############################
+        # (2) Update G network: maximize log(D(G(z)))
+        ###########################
         netG.zero_grad()
         label.data.fill_(real_label)
         noise = torch.randn(b_size, nz, 1, 1, device=device)
