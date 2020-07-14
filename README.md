@@ -19,7 +19,7 @@ These instructions will allow you to generate 2D slices of a SOFC anode, and 3D 
 
 ### Prerequisites
 
-* We recommend the use of anconda
+* We recommend the use of [anconda](https://www.anaconda.com/products/individual)
 * All codes are written in pytorch
 ```
 pip install torch
