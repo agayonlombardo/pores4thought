@@ -2,6 +2,9 @@
 
 Repository for genration of 3D multi-phase electrode microstructure with periodic boundaries
 
+![real_generated](https://user-images.githubusercontent.com/49480804/87581830-77e23780-c6d1-11ea-9744-0253f8d78573.PNG)
+
+
 ## Authors
 
 * **Andrea Gayon-Lombardo** 
