@@ -33,7 +33,7 @@ params = {
     'nepochs' : 15,# Number of training epochs.
     'lr' : 0.0002,# Learning rate for optimizers
     'beta1' : 0.5,# Beta1 hyperparam for Adam optimizer
-    'alpha' : 30,# Size of z space
+    'alpha' : 6,# Size of z space
     'stride' : 16,# Stride on image to crop
     'num_samples' : 1}# Save step.
 
