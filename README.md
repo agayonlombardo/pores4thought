@@ -36,21 +36,28 @@ pip install tifffile
 
 ## Pre-trained Generator
 
-A step by step series of examples that tell you how to get a development env running
+The following steps are required to generate an image from a pre-trained GAN
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+* Locate the folder ```2D/postprocess``` or ```2D/postprocess```
+* To generate a volume of a Li-ion cathode, run:
 
 ```
-until finished
+python NMC_generate_threephase.py
+```
+* To generate a volume of a SOFC anode, run:
+
+```
+python SOFC_generate_threephase.py
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Larger volumes can be obtained by changing the size parameter alpha. E.g. to generate a 512x512x512 volume, alpha = 30:
+
+```
+params {
+        'alpha' : 30
+        }
+ ```
+Samples of already generated volumes of 64x64x64 voxels and 256x256x256 voxels are given in the folder ```3D/Samples_volumes```
 
 ## Train new model
 
@@ -74,11 +81,12 @@ python input_datasets_3D.py
 
 ### Training step
 
-The following libraries need to be in the same folder: ```dataset.py```
-Explain what these tests test and why
+* The library corresponding to the pre-treated dataset (i.e. training set) must be in the same file as the ```main_train.py``` file
+
+* To run the training process, locate the folder ```3D/train/``` and run the code:
 
 ```
-Give an example
+python main_train.py
 ```
 
 ## Deployment
@@ -93,15 +101,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+For contributing or submitting pull requests, please contact the authors:
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Andrea Gayon-Lombardo**: a.gayon-lombardo17@imperial.ac.uk
 
 ## Acknowledgments
 
