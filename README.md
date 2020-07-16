@@ -18,7 +18,7 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 
 ## Citing this work
 
-If you use this codes or part of them, as well as the informtion provided in this repo, please cite the following article:
+If you use these codes or parts of them, as well as the informtion provided in this repo, please cite the following article:
 
 Gayon-Lombardo, A., Mosser, L., Brandon, N.P. et al. *Pores for thought: generative adversarial networks for stochastic reconstruction of 3D multi-phase electrode microstructures with periodic boundaries.* npj Comput Mater 6, 82 (2020). (https://doi.org/10.1038/s41524-020-0340-7)
 
