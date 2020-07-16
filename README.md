@@ -16,6 +16,12 @@ Repository for genration of 3D multi-phase electrode microstructure with periodi
 
 *Dyson School of Design - Imperial College London*
 
+## Citing this work
+
+If you use this codes or part of them, as well as the informtion provided in this repo, please cite the following article:
+
+Gayon-Lombardo, A., Mosser, L., Brandon, N.P. et al. *Pores for thought: generative adversarial networks for stochastic reconstruction of 3D multi-phase electrode microstructures with periodic boundaries.* npj Comput Mater 6, 82 (2020). (https://doi.org/10.1038/s41524-020-0340-7)
+
 ## Getting Started
 
 These instructions will allow you to generate 2D slices of a SOFC anode, and 3D reconstructions of two types of electrode microstructures: a Lithium-ion cathode and a SOFC anode.
@@ -38,7 +44,7 @@ pip install tifffile
 
 The following steps are required to generate an image from a pre-trained GAN
 
-* Locate the folder ```2D/postprocess``` or ```2D/postprocess```
+* Locate the folder ```2D/postprocess``` or ```3D/postprocess```
 * To generate a volume of a Li-ion cathode, run:
 
 ```
@@ -61,7 +67,7 @@ Samples of already generated volumes of 64x64x64 voxels and 256x256x256 voxels a
 
 ## Train new model
 
-Explain how to run the automated tests for this system
+The following steps will guide you through the training process of a DCGAN
 
 ### Data pre-treatment 
 
@@ -89,16 +95,6 @@ python input_datasets_3D.py
 python main_train.py
 ```
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
 ## Contributing
 
 For contributing or submitting pull requests, please contact the authors:
@@ -107,6 +103,10 @@ For contributing or submitting pull requests, please contact the authors:
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* AGL thanks CONACYT-SENER Mexico for funding her PhD
+
+* SJC thanks The Faraday Institute for funding
+
+* We would like to thank [Prof Stephen J. Neethling](https://www.imperial.ac.uk/people/s.neethling) for his input and valuable discussions
+
+* We also thank [Prof Olivier Dubrule](https://www.imperial.ac.uk/people/o.dubrule) for his valuable input
